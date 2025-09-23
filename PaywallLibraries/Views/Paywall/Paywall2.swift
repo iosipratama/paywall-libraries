@@ -8,8 +8,63 @@
 import SwiftUI
 
 struct Paywall2: View {
+    
+    // define benefit
+    private let benefits: [Benefit] = [
+        .init(icon: "play.fill", text: "Unlimited Skips"),
+        .init(icon: "waveform", text: "High-Quality Audio"),
+        .init(icon: "arrow.down.circle.fill", text: "Unlimited Downloads"),
+        .init(icon: "music.note.list", text: "Custom Playlists"),
+        .init(icon: "leaf.fill", text: "Ad-Free Experience")
+        
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack{
+            
+            ZStack{
+                
+                
+                VStack{
+                
+                    Text("Experience Music Without Limits")
+                    
+                    VStack(alignment: .leading){
+                        Text("What's included")
+                        ForEach(benefits){ benefit in
+                            BenefitRow(Benefit: benefit)
+                        }
+                    }
+                    
+                    
+                    
+                }
+            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button{
+                        print("Button tapped")
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.body)
+                    }
+                    
+                }
+                
+                ToolbarItem(placement: .topBarTrailing){
+                    Button("Restore Purchase"){
+                        print("Action tapped")
+                    }
+                    
+                }
+                
+            }
+        }
+        
+        
+        
     }
 }
 
