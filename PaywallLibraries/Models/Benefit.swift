@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+// 1. Define benefit model
+struct Benefit: Identifiable {
+    let id = UUID()
+    let icon: String
+    let text: String
+}

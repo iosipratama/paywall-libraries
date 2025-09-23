@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct BenefitRow: View {
+    
+    // 2.
+    let Benefit: Benefit
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(alignment: .center){
+            Image(systemName: Benefit.icon)
+                .font(.headline)
+            Text(Benefit.text)
+        }
     }
-}
-
-#Preview {
-    BenefitRow()
 }
