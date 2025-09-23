@@ -105,6 +105,9 @@ struct Paywall1: View {
                 // Remember to attach the navigation modifier to the content
                 .navigationTitle("")
                 .navigationBarTitleDisplayMode(.inline)
+                // automatically hides back button
+                .navigationBarBackButtonHidden(true)
+                
                 // adding toolbar
                 
                 .toolbar {
