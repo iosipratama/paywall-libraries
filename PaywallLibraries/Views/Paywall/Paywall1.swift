@@ -21,54 +21,104 @@ struct Paywall1: View {
     
     @State private var isTrialOn: Bool = false
     
+    // to close the view
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         
         
-        VStack(alignment: .leading){
-            
-            VStack(alignment: .leading, spacing: 24){
-                Text("Go Premium")
-                    .font(.largeTitle)
+        NavigationStack{
+            VStack(alignment: .leading){
                 
-                // call the benefit list
-                ForEach(benefits) { benefit in
-                    BenefitRow(Benefit: benefit)
+                Spacer()
+                Spacer()
+                VStack(alignment: .leading, spacing: 24){
+                    Text("Go Premium")
+                        .font(.largeTitle)
+                        .fontDesign(.serif)
+                    
+                    // call the benefit list
+                    ForEach(benefits) { benefit in
+                        BenefitRow(Benefit: benefit)
+                        
+                    }
+                }
+                
+                Spacer()
+                // MARK - Bottom Container
+                VStack(spacing: 24){
+                    
+                    // Trial
+                    Toggle(isOn: $isTrialOn) {
+                        Text("Enable 3 day free trial")
+                    }
+                    
+                    VStack(spacing: 6){
+                        // Main Button
+                        Button {
+                            print("Button tapped!")
+                        } label: {
+                            Text("Continue")
+                                .fontWeight(.semibold)
+                                .padding()
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity)
+                                .background(.black)
+                                .cornerRadius(12)
+                        }
+                        
+                        // Legal Row
+                        HStack(alignment: .center){
+                            Text("Cancel anytime")
+                                .font(.footnote)
+                            Link("Privacy", destination: URL(string: "#")!)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                            Link("Terms", destination: URL(string: "#")!)
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    
+                    
                     
                 }
-            }
-            
-            
-            
-            Toggle(isOn: $isTrialOn) {
-                Text("Enable 3 day free trial")
-            }
-            
-            Button {
-                print("Button tapped!")
-            } label: {
-                Text("Continue")
-                    .padding()
-                    .foregroundStyle(.white)
-                    .cornerRadius(12)
-                    .frame(maxWidth: .infinity)
-                    .background(.black)
-                    
+                .padding(.bottom, 24)
+                
                 
             }
+            .padding(.horizontal, 16)
             
-            HStack{
-                Text("Cancel anytime")
-                    .font(.footnote)
-                Link("Privacy", destination: URL(string: "#")!)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                Link("Terms", destination: URL(string: "#")!)
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+            // Remember to attach the navigation modifier to the content
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            // adding toolbar
+            
+            .toolbar {
+                // Leading: close toolbar
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.body)
+                    }
+                }
+                
+                // Trailing: restore purchase
+                ToolbarItem(placement: .topBarTrailing){
+                    Button {
+                        print("Button tapped!")
+                    } label: {
+                        Text("Restore purchase")
+                    }
+                    
+                }
+                
             }
         }
-        .padding(.horizontal, 16)
+        
+        
 
         
     }
