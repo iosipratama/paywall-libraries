@@ -76,6 +76,7 @@ struct Paywall1: View {
                                         .frame(maxWidth: .infinity)
                                         .background(.black)
                                         .cornerRadius(12)
+                                        
                                 }
                                 
                                 // Legal Row
