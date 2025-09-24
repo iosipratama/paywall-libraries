@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct SubscriptionPackage: Identifiable,Equatable {
+    let id = UUID()
+    let title: String
+    let price: Double
+}

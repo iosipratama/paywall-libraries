@@ -19,6 +19,17 @@ struct Paywall2: View {
         
     ]
     
+    @State private var selectedOption: SubscriptionPackage?
+    private let options: [SubscriptionPackage] = [
+        .init(title: "Yearly", price: 29.99),
+        .init(title: "Monthly", price: 4.99)
+        
+    ]
+    
+
+    
+    
+    
     var body: some View {
         NavigationStack{
             
@@ -31,13 +42,56 @@ struct Paywall2: View {
                     .accessibilityHidden(true)
                 
                 // content
-                VStack{
+                VStack(alignment: .leading, spacing: 24){
                 
                     Spacer()
-                    Text("Experience Music Without Limits")
+                    VStack(alignment: .center, spacing: 8){
+                        Image("musicflowlogo")
+                        Text("Experience Music Without Limits")
+                            .foregroundStyle(.white)
+                            .fontWeight(.medium)
+                    }
+                    .frame(maxWidth: .infinity)
                     
-                    VStack(alignment: .leading){
-                        Text("What's included")
+                   
+                    
+                    // MARK - Product Package
+                    VStack{
+                        ForEach(options) { option in
+                            Button {
+                                selectedOption = option
+                            } label: {
+                                SubscriptionRow(option: option, isSelected: selectedOption == option)
+                            }
+                            .buttonStyle(.plain)
+                            
+                            // add divider
+                            if option != options.last {
+                                Divider()
+                                    .padding(.leading, 44)
+                            }
+                            
+                        }
+                    }
+                    .background(.ultraThinMaterial)
+                    // add border radius
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(.white.opacity(0.3), lineWidth: 1)
+                    }
+                    .onAppear{
+                        // defaultSelection
+                        selectedOption = options.first!
+                    }
+                    
+                    //
+                    
+                    
+                    VStack(alignment: .leading, spacing: 22){
+                        Text("What's included:")
+                            .foregroundStyle(.secondary)
+                        
                         ForEach(benefits){ benefit in
                             BenefitRow(Benefit: benefit)
                         }
@@ -45,7 +99,7 @@ struct Paywall2: View {
                     
                     Spacer()
                     // Mark - Bottom Container
-                    VStack{
+                    VStack(spacing:6){
                         
                         Button{
                             print("Button tapped")
@@ -60,7 +114,7 @@ struct Paywall2: View {
                                 .cornerRadius(16)
                         }
                         
-                        HStack{
+                        HStack(spacing: 12){
                             Link(destination: URL(string: "#")!) {
                                 Text("Terms")
                                     .font(.subheadline)
@@ -79,7 +133,7 @@ struct Paywall2: View {
                     
                     
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 32)
                 
                 
             }
