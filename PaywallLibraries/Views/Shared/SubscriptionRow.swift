@@ -11,6 +11,7 @@ struct SubscriptionRow: View {
     
     let option: SubscriptionPackage
     let isSelected: Bool
+    let brandColor: Color
     
     private var periodSuffix: String {
         let lower = option.title.lowercased()
@@ -24,7 +25,7 @@ struct SubscriptionRow: View {
             
             // Radio button
             Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
-                .foregroundStyle(isSelected ? .purple : .gray)
+                .foregroundStyle(isSelected ? brandColor : .gray.opacity(0.3))
                 .font(Font.system(size: 20))
             
             VStack(alignment: .leading){
@@ -52,5 +53,5 @@ struct SubscriptionRow: View {
 }
 
 #Preview {
-    SubscriptionRow(option: SubscriptionPackage(title: "Monthly Plan", price: 9.99), isSelected: true)
+    SubscriptionRow(option: SubscriptionPackage(title: "Monthly Plan", price: 9.99), isSelected: true, brandColor: .blue)
 }

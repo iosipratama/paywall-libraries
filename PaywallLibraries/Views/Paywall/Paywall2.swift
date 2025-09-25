@@ -64,7 +64,7 @@ struct Paywall2: View {
                             Button {
                                 selectedOption = option
                             } label: {
-                                SubscriptionRow(option: option, isSelected: selectedOption == option)
+                                SubscriptionRow(option: option, isSelected: selectedOption == option, brandColor: .purple)
                             }
                             .buttonStyle(.plain)
                             

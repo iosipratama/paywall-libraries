@@ -15,7 +15,7 @@ struct Paywall3: View {
     // store a data inside option conforming to SubscriptionPackage
     private let options: [SubscriptionPackage] = [
         .init(title: "Yearly", price: 29.99),
-        .init(title: "Weekly", price: 4.99)
+        .init(title: "Monthly", price: 4.99)
         
     ]
     
@@ -28,7 +28,7 @@ struct Paywall3: View {
                 Rectangle()
                     .fill(
                         LinearGradient(
-                            colors: [.white, Color.gray.opacity(0.3)],
+                            colors: [.white, Color.gray.opacity(0.2)],
                             startPoint: .top,
                             endPoint: .bottom
                         )
@@ -37,6 +37,7 @@ struct Paywall3: View {
                 
                 // Content
                 VStack(spacing: 24){
+                    
                     
                     // Image
                     Image("paywall3-image")
@@ -61,18 +62,59 @@ struct Paywall3: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         }
                         Text("Unlock limitless conversations and quicker responses with AI Plus")
-                            .multilineTextAlignment(.center)
                             .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                            .fixedSize(horizontal: false, vertical: true)
+                            
                     }
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 24)
+                
                     
                     
                     
-                    Spacer()
                     
+                    
+                    // MARK - Product Package
                     VStack{
-                        
+                        ForEach(options) { option in
+                            Button {
+                                selectedOption = option
+                            } label: {
+                                SubscriptionRow(option: option, isSelected: selectedOption == option, brandColor: .blue)
+                            }
+                            .buttonStyle(.plain)
+                            
+                            // add divider
+                            if option != options.last {
+                                Divider()
+                                    .padding(.leading, 44)
+                                    .padding(.trailing, 16)
+                            }
+                            
+                            
+                        }
                     }
                     
+                    .background(.white)
+                    // add border radius
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    
+                    // add border
+                    .overlay{
+                        RoundedRectangle(cornerRadius: 16, style: .continuous)
+                            .stroke(.white.opacity(0.3), lineWidth: 1)
+                    }
+                    
+                    .shadow(color: .black.opacity(0.02), radius: 8, x: 0, y: 4)
+                    .onAppear{
+                        // default selection
+                        // unwrap with optionals
+                        selectedOption = options.first!
+                    }
+                    .padding(.horizontal, 24)
+                     
                     
                     // Button area
                     VStack (spacing: 12){
@@ -138,3 +180,4 @@ struct Paywall3: View {
 #Preview {
     Paywall3()
 }
+
