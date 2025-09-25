@@ -8,6 +8,20 @@
 import SwiftUI
 
 struct Paywall3: View {
+    
+    
+    @State private var selectedOption: SubscriptionPackage?
+    
+    // store a data inside option conforming to SubscriptionPackage
+    private let options: [SubscriptionPackage] = [
+        .init(title: "Yearly", price: 29.99),
+        .init(title: "Weekly", price: 4.99)
+        
+    ]
+    
+    // close the view
+    @Environment(\.dismiss) private var dismiss
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -23,6 +37,12 @@ struct Paywall3: View {
                 
                 // Content
                 VStack(spacing: 24){
+                    
+                    // Image
+                    Image("paywall3-image")
+                        .padding(.top, 32)
+                    
+                   
                     
                     // Title area
                     VStack (spacing: 12){
@@ -44,6 +64,15 @@ struct Paywall3: View {
                             .multilineTextAlignment(.center)
                             .foregroundStyle(.secondary)
                     }
+                    
+                    
+                    
+                    Spacer()
+                    
+                    VStack{
+                        
+                    }
+                    
                     
                     // Button area
                     VStack (spacing: 12){
@@ -70,6 +99,8 @@ struct Paywall3: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                     }
+                    .padding(.bottom, 24)
+                    .padding(.horizontal, 24)
                     
                     
                     
@@ -80,10 +111,11 @@ struct Paywall3: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading){
                     Button {
-                        print("Button tapped")
+                        dismiss()
                     } label: {
                         Image(systemName: "xmark")
                             .font(.body)

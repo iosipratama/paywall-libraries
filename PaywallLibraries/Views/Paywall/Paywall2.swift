@@ -9,7 +9,8 @@ import SwiftUI
 
 struct Paywall2: View {
     
-    // define benefit
+    // store data in variable called benefits conforming to Benefit data model
+    // Initialize
     private let benefits: [Benefit] = [
         .init(icon: "play.fill", text: "Unlimited Skips"),
         .init(icon: "waveform", text: "High-Quality Audio"),
@@ -20,12 +21,14 @@ struct Paywall2: View {
     ]
     
     @State private var selectedOption: SubscriptionPackage?
+    
     private let options: [SubscriptionPackage] = [
         .init(title: "Yearly", price: 29.99),
         .init(title: "Monthly", price: 4.99)
         
     ]
     
+    @Environment(\.dismiss) private var dismiss
 
     
     
@@ -139,10 +142,11 @@ struct Paywall2: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button{
-                        print("Button tapped")
+                        dismiss()
                     } label: {
                         Image(systemName: "xmark")
                             .font(.body)

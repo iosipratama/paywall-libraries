@@ -7,6 +7,7 @@
 
 import Foundation
 
+// define data model for subscription list 
 struct SubscriptionPackage: Identifiable,Equatable {
     let id = UUID()
     let title: String

@@ -19,6 +19,7 @@ struct Paywall1: View {
         .init(icon: "checkmark.seal.fill", text: "Customizable Templates")
     ]
     
+    // 
     @State private var isTrialOn: Bool = false
     
     // to close the view
@@ -61,7 +62,15 @@ struct Paywall1: View {
                             
                             // Trial
                             Toggle(isOn: $isTrialOn) {
-                                Text("Enable 3 day free trial")
+                                
+                                if isTrialOn {
+                                    Text("Enjoy your 3-day free trial")
+                                } else {
+                                    Text("Enable 3-day free trial")
+                                }
+                                
+                                
+                                
                             }
                             
                             VStack(spacing: 6){

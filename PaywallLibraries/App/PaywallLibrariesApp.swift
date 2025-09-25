@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Render this file
 @main
 struct PaywallLibrariesApp: App {
     var body: some Scene {
