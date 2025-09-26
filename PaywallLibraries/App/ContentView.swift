@@ -22,6 +22,10 @@ struct ContentView: View {
                 NavigationLink("Paywall 3"){
                     Paywall3()
                 }
+                
+                NavigationLink("Paywall 4"){
+                    Paywall4()
+                }
             }
         }
     }

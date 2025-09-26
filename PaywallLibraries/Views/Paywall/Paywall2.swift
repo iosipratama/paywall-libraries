@@ -65,6 +65,8 @@ struct Paywall2: View {
                                 selectedOption = option
                             } label: {
                                 SubscriptionRow(option: option, isSelected: selectedOption == option, brandColor: .purple)
+                                    // Make the entire row tapable
+                                    .contentShape(Rectangle())
                             }
                             .buttonStyle(.plain)
                             
@@ -77,12 +79,10 @@ struct Paywall2: View {
                         }
                     }
                     .background(.ultraThinMaterial)
+                    
                     // add border radius
                     .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 16, style: .continuous)
-                            .stroke(.white.opacity(0.3), lineWidth: 1)
-                    }
+                    
                     .onAppear{
                         // defaultSelection
                         selectedOption = options.first!

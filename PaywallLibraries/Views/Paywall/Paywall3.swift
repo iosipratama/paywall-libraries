@@ -83,6 +83,11 @@ struct Paywall3: View {
                                 selectedOption = option
                             } label: {
                                 SubscriptionRow(option: option, isSelected: selectedOption == option, brandColor: .blue)
+                                // make the hstack expand to fill the space
+                                .frame(maxWidth: .infinity)
+                            
+                                // make the entire rectangle is tapable
+                                .contentShape(Rectangle())
                             }
                             .buttonStyle(.plain)
                             
