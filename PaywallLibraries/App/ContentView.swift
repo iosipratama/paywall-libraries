@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var showPaywall = false
+
     var body: some View {
         NavigationStack{
             List {
@@ -26,6 +29,28 @@ struct ContentView: View {
                 NavigationLink("Paywall 4"){
                     Paywall4()
                 }
+                
+                Button {
+                    showPaywall = true
+
+                }label: {
+                    HStack{
+                        Text("Paywall 5")
+                            .foregroundStyle(.black)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.subheadline)
+                            .foregroundStyle(.black.opacity(0.3))
+                    }
+                    
+                }
+                
+                
+                .sheet(isPresented: $showPaywall) {
+                    Paywall5()
+                    .presentationDetents([.height(660)])
+                }
+                
             }
         }
     }
