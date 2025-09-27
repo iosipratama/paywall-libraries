@@ -48,7 +48,7 @@ struct ContentView: View {
                 
                 .sheet(isPresented: $showPaywall) {
                     Paywall5()
-                    .presentationDetents([.height(660)])
+                        .presentationDetents([.height(560)])
                 }
                 
             }
