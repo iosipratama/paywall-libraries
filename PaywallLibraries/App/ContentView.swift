@@ -11,6 +11,8 @@ struct ContentView: View {
     
     @State var showPaywall5 = false
     @State var showPaywall6 = false
+    @State var showSO1 = false
+    
     
     var body: some View {
         NavigationStack{
@@ -60,6 +62,8 @@ struct ContentView: View {
                 }
                 
                 
+                
+                
                 .sheet(isPresented: $showPaywall6){
                     Paywall6()
                      .presentationDetents([.large])
@@ -69,6 +73,22 @@ struct ContentView: View {
                         .presentationDetents([.height(560)])
                 }
                 
+                
+            }
+            
+            List {
+                Button {
+                    showSO1 = true
+                } label: {
+                    Text("Special Offer 1")
+                        .foregroundStyle(.black)
+                }
+                
+                .sheet(isPresented: $showSO1) {
+                    SO1()
+                        .presentationDetents([.large])
+                }
+
             }
         }
     }
