@@ -11,6 +11,24 @@ struct SO1: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    // Use AttributedString to have span like style
+    private var promoText: AttributedString {
+        var s = AttributedString("Get a 50% discount on our annual subscription, now only $29.99/year for a limited time.")
+        // Set base styling
+        s.font = .title2
+        s.foregroundColor = .gray
+        // Emphasize specific spans
+        if let r1 = s.range(of: "50% discount") {
+            s[r1].foregroundColor = .black
+            s[r1].font = .title2.weight(.semibold)
+        }
+        if let r2 = s.range(of: "$29.99/year") {
+            s[r2].foregroundColor = .black
+            s[r2].font = .title2.weight(.semibold)
+        }
+        return s
+    }
+    
     var body: some View {
         VStack{
             HStack{
@@ -19,14 +37,28 @@ struct SO1: View {
                 }label: {
                     Image(systemName: "xmark")
                         .frame(width: 32, height: 32)
-                        .foregroundStyle(.secondary)
+                        
                         .font(.footnote)
                         .background(.gray.opacity(0.2))
+                        .foregroundStyle(.gray)
                         .cornerRadius(32)
                 }
                 
                 
                 Spacer()
+                
+                Button {
+                    
+                }label: {
+                    Text("Restore Purchase")
+                        .font(.subheadline)
+                        .foregroundStyle(.gray)
+                        .frame(height: 32)
+                        .padding(.horizontal, 12)
+                        .background(.gray.opacity(0.2))
+                        .clipShape(Capsule())
+                }
+                
                 
             }
             .padding(.top, 16)
@@ -37,9 +69,7 @@ struct SO1: View {
                 VStack(alignment: .leading, spacing: 12){
                     
                     Image("runsyncpro")
-                    Text("Get a 50% discount on our annual subscription, now only $29.99/year for a limited time.")
-                        .font(.title3)
-                        .fontWeight(.semibold)
+                    Text(promoText)
                 }
                 Spacer()
                 Image("run")
@@ -77,4 +107,6 @@ struct SO1: View {
 
 #Preview {
     SO1()
+
 }
+
