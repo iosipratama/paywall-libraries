@@ -15,7 +15,7 @@ struct TrialStep: View {
     
     
     var body: some View {
-        HStack(alignment: .top){
+        HStack(alignment: .top, spacing: 10){
             VStack{
                 // Icon inside circle
                 Image(systemName: icon)
@@ -28,17 +28,18 @@ struct TrialStep: View {
                     Rectangle()
                         .fill(.purple)
                         .frame(width: 2)
-                        .frame(maxHeight: 32)
+                        .frame(maxHeight: 44)
                     
                 }
             }
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 6) {
                 Text(title)
-                    .font(.headline)
+                    .font(.title3)
                     .bold()
                 Text(description)
-                    .font(.subheadline)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
                     
                 
             }
@@ -49,4 +50,5 @@ struct TrialStep: View {
 
 #Preview {
     TrialStep(icon: "checkmark.circle.fill", title: "Today", description: "Start exploring premium features today!", isLast: true)
+        .preferredColorScheme(.dark)
 }

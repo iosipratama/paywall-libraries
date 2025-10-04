@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var showPaywall = false
-
+    @State var showPaywall5 = false
+    @State var showPaywall6 = false
+    
     var body: some View {
         NavigationStack{
             List {
@@ -31,7 +32,7 @@ struct ContentView: View {
                 }
                 
                 Button {
-                    showPaywall = true
+                    showPaywall5 = true
 
                 }label: {
                     HStack{
@@ -45,8 +46,25 @@ struct ContentView: View {
                     
                 }
                 
+                Button {
+                    showPaywall6 = true
+                } label: {
+                    HStack {
+                        Text("Paywall 6")
+                            .foregroundStyle(.black)
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.subheadline)
+                            .foregroundStyle(.black.opacity(0.3))
+                    }
+                }
                 
-                .sheet(isPresented: $showPaywall) {
+                
+                .sheet(isPresented: $showPaywall6){
+                    Paywall6()
+                     .presentationDetents([.large])
+                }
+                .sheet(isPresented: $showPaywall5) {
                     Paywall5()
                         .presentationDetents([.height(560)])
                 }
