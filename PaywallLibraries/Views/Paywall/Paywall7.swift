@@ -15,6 +15,17 @@ struct Paywall7: View {
         ZStack{
             
             VStack{
+                Image("bgpaywall7")
+                    .resizable()
+                    .scaledToFit()
+                    
+                Spacer()
+            }
+            .ignoresSafeArea()
+            
+            
+            
+            VStack{
                 HStack{
                     Button{
                         dismiss()
@@ -42,6 +53,9 @@ struct Paywall7: View {
                 Spacer()
                 
                 VStack(spacing: 8){
+                    Image("clienthub")
+                        .padding(.bottom, 8)
+                    
                     Text("Unlock Advanced\nCRM Tools")
                         .font(.title)
                         .bold()
@@ -54,7 +68,7 @@ struct Paywall7: View {
                 Spacer()
                 
                 // Footer
-                VStack{
+                VStack(spacing: 16){
                     VStack{
                         Text("Enjoy unlimited access for 7 days,")
                         Text("then $39.99 annually")
@@ -74,6 +88,8 @@ struct Paywall7: View {
                             .clipShape(Capsule())
                     }
                 }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 60)
                 
                 
                 
